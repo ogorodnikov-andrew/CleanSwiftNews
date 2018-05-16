@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BaseModuleViewController.swift
 //  CleanSwiftNews
 //
 //  Created by Andrei Ogorodnikov on 14/05/2018.

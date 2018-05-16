@@ -8,7 +8,9 @@
 
 import Foundation
 
-protocol NewsListBusinessLogic {}
+protocol NewsListBusinessLogic {
+  func fetchNews(request: NewsList.FetchNews.Request)
+}
 
 protocol NewsListDataStore {}
 
@@ -17,13 +19,22 @@ class NewsListInteractor: NewsListBusinessLogic, NewsListDataStore {
   // MARK: - Properties
 
   let presenter: NewsListPresentationLogic
+  let newsService: NewsService
 
   // MARK: - NewsListDataStore
   // MARK: - Initialization
 
-  init(presenter: NewsListPresentationLogic) {
+  init(presenter: NewsListPresentationLogic, newsService: NewsService) {
     self.presenter = presenter
+    self.newsService = newsService
   }
 
   // MARK: - NewsListBusinessLogic
+
+  func fetchNews(request: NewsList.FetchNews.Request) {
+    newsService.news { [weak self] news in
+      let response = NewsList.FetchNews.Response(news: news)
+      self?.presenter.presentNews(response: response)
+    }
+  }
 }

@@ -8,7 +8,9 @@
 
 import UIKit
 
-protocol NewsListPresentationLogic {}
+protocol NewsListPresentationLogic {
+  func presentNews(response: NewsList.FetchNews.Response)
+}
 
 class NewsListPresenter: NewsListPresentationLogic {
 
@@ -23,4 +25,10 @@ class NewsListPresenter: NewsListPresentationLogic {
   }
 
   // MARK: - NewsListPresentationLogic
+
+  func presentNews(response: NewsList.FetchNews.Response) {
+    let displayedNews = response.news.map(NewsViewModel.init(news:))
+    let viewModel = NewsList.FetchNews.ViewModel(displayedNews: displayedNews)
+    viewController?.displayNews(viewModel: viewModel)
+  }
 }

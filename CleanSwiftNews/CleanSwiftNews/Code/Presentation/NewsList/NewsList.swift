@@ -8,4 +8,14 @@
 
 import Foundation
 
-enum NewsList {}
+enum NewsList {
+  enum FetchNews {
+    struct Request {}
+    struct Response {
+      let news: [News]
+    }
+    struct ViewModel {
+      let displayedNews: [NewsViewModel]
+    }
+  }
+}

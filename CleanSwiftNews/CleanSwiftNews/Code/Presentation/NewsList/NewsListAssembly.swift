@@ -14,7 +14,8 @@ class NewsListAssembly: Assembly {
       fatalError("Invalid view controller type")
     }
     let presenter = NewsListPresenter(viewController: viewController)
-    let interactor = NewsListInteractor(presenter: presenter)
+    let newsService = NewsServiceImpl()
+    let interactor = NewsListInteractor(presenter: presenter, newsService: newsService)
     viewController.interactor = interactor
     let router = NewsListRouter(viewController: viewController, dataStore: interactor)
     viewController.router = router

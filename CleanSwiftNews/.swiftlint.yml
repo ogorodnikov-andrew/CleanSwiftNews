@@ -1,0 +1,9 @@
+
+excluded:
+  - Pods/
+
+line_length: 120
+
+disabled_rules:
+  - todo
+  - nesting
