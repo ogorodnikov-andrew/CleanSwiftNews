@@ -10,9 +10,12 @@ import Foundation
 
 protocol NewsListBusinessLogic {
   func fetchNews(request: NewsList.FetchNews.Request)
+  func selectNews(request: NewsList.SelectNews.Request)
 }
 
-protocol NewsListDataStore {}
+protocol NewsListDataStore {
+  var selectedNews: News? { get set }
+}
 
 class NewsListInteractor: NewsListBusinessLogic, NewsListDataStore {
 
@@ -20,8 +23,12 @@ class NewsListInteractor: NewsListBusinessLogic, NewsListDataStore {
 
   let presenter: NewsListPresentationLogic
   let newsService: NewsService
+  var news: [News] = []
 
   // MARK: - NewsListDataStore
+
+  var selectedNews: News?
+
   // MARK: - Initialization
 
   init(presenter: NewsListPresentationLogic, newsService: NewsService) {
@@ -33,8 +40,14 @@ class NewsListInteractor: NewsListBusinessLogic, NewsListDataStore {
 
   func fetchNews(request: NewsList.FetchNews.Request) {
     newsService.news { [weak self] news in
+      self?.news = news
       let response = NewsList.FetchNews.Response(news: news)
       self?.presenter.presentNews(response: response)
     }
+  }
+
+  func selectNews(request: NewsList.SelectNews.Request) {
+    selectedNews = news[request.index]
+    presenter.presentSelectNews(response: NewsList.SelectNews.Response())
   }
 }

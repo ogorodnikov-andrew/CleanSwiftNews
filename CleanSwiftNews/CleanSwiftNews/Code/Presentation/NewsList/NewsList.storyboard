@@ -39,11 +39,20 @@
                     <navigationItem key="navigationItem" title="News" id="GZw-jh-PCa"/>
                     <connections>
                         <outlet property="tableView" destination="od8-o4-ry9" id="b72-0x-0z2"/>
+                        <segue destination="wWT-eE-bU3" kind="show" identifier="NewsDetails" id="5Jn-x8-fHL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQZ-PH-SwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="844" y="256.82158920539734"/>
+        </scene>
+        <!--NewsDetails-->
+        <scene sceneID="Qm4-Ls-Z20">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NewsDetails" id="wWT-eE-bU3" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1aa-Se-oWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1550" y="256"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MXy-XO-NnV">

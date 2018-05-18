@@ -34,4 +34,18 @@ class BaseModuleViewController: UIViewController {
   func assembly() -> Assembly {
     fatalError("Modules should override assembly() to return module assembly instance")
   }
+
+  // MARK: Routing
+
+  var segueHandler: NSObjectProtocol?
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let segueHandler = segueHandler, let selectorName = segue.identifier else {
+      return
+    }
+    let selector = NSSelectorFromString("routeTo\(selectorName)WithSegue:")
+    if segueHandler.responds(to: selector) {
+      segueHandler.perform(selector, with: segue)
+    }
+  }
 }

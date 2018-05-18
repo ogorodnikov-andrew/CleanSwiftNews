@@ -18,4 +18,12 @@ enum NewsList {
       let displayedNews: [NewsViewModel]
     }
   }
+
+  enum SelectNews {
+    struct Request {
+      let index: Int
+    }
+    struct Response {}
+    struct ViewModel {}
+  }
 }

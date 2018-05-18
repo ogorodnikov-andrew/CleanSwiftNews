@@ -8,7 +8,9 @@
 
 import UIKit
 
-@objc protocol NewsListRoutingLogic {}
+@objc protocol NewsListRoutingLogic {
+  func routeToNewsDetails(segue: UIStoryboardSegue?)
+}
 
 protocol NewsListDataPassing {
   var dataStore: NewsListDataStore { get }
@@ -33,6 +35,21 @@ protocol NewsListDataPassing {
   }
 
   // MARK: - Routing
+
+  func routeToNewsDetails(segue: UIStoryboardSegue?) {
+    guard
+      let destination = segue?.destination as? NewsDetailsViewController,
+      var destinationDataStore = destination.router?.dataStore
+    else {
+      return
+    }
+    passDataToNewsDetails(source: dataStore, destination: &destinationDataStore)
+  }
+
   // MARK: - Navigation
   // MARK: - Passing data
+
+  func passDataToNewsDetails(source: NewsListDataStore, destination: inout NewsDetailsDataStore) {
+    destination.news = source.selectedNews
+  }
 }

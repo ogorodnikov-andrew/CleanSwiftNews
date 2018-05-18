@@ -10,6 +10,7 @@ import UIKit
 
 protocol NewsListPresentationLogic {
   func presentNews(response: NewsList.FetchNews.Response)
+  func presentSelectNews(response: NewsList.SelectNews.Response)
 }
 
 class NewsListPresenter: NewsListPresentationLogic {
@@ -30,5 +31,9 @@ class NewsListPresenter: NewsListPresentationLogic {
     let displayedNews = response.news.map(NewsViewModel.init(news:))
     let viewModel = NewsList.FetchNews.ViewModel(displayedNews: displayedNews)
     viewController?.displayNews(viewModel: viewModel)
+  }
+
+  func presentSelectNews(response: NewsList.SelectNews.Response) {
+    viewController?.displaySelectNews(viewModel: NewsList.SelectNews.ViewModel())
   }
 }

@@ -19,5 +19,6 @@ class NewsListAssembly: Assembly {
     viewController.interactor = interactor
     let router = NewsListRouter(viewController: viewController, dataStore: interactor)
     viewController.router = router
+    viewController.segueHandler = router
   }
 }

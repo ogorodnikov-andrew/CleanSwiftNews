@@ -10,6 +10,7 @@ import UIKit
 
 protocol NewsListDisplayLogic: AnyObject {
   func displayNews(viewModel: NewsList.FetchNews.ViewModel)
+  func displaySelectNews(viewModel: NewsList.SelectNews.ViewModel)
 }
 
 final class NewsListViewController: BaseModuleViewController {
@@ -50,6 +51,10 @@ extension NewsListViewController: NewsListDisplayLogic {
     self.displayedNews = viewModel.displayedNews
     tableView.reloadData()
   }
+
+  func displaySelectNews(viewModel: NewsList.SelectNews.ViewModel) {
+    performSegue(withIdentifier: String(describing: NewsDetails.self), sender: nil)
+  }
 }
 
 extension NewsListViewController: UITableViewDataSource {
@@ -67,5 +72,7 @@ extension NewsListViewController: UITableViewDataSource {
 extension NewsListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+    let request = NewsList.SelectNews.Request(index: indexPath.row)
+    interactor?.selectNews(request: request)
   }
 }
