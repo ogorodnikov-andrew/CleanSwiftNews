@@ -54,6 +54,15 @@ final class NewsListViewControllerTests: XCTestCase {
     // Then
     XCTAssertEqual(interactor.fetchNewsCalls, 1)
   }
+
+  func testSelectNewsCalledOnCellSelection() {
+    // Given
+    let indexPath = IndexPath(row: 0, section: 0)
+    // When
+    viewController.tableView.delegate?.tableView?(viewController.tableView, didSelectRowAt: indexPath)
+    // Then
+    XCTAssertEqual(interactor.selectNewsCalls, 1)
+  }
 }
 
 private final class MockNewsListInteractor: NewsListBusinessLogic {
