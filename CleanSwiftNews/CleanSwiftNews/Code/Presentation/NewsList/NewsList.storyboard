@@ -13,7 +13,7 @@
         <!--News-->
         <scene sceneID="0Sg-Wz-wBF">
             <objects>
-                <viewController id="d7k-De-MI0" customClass="NewsListViewController" customModule="CleanSwiftNews" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewsListViewController" id="d7k-De-MI0" customClass="NewsListViewController" customModule="CleanSwiftNews" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ar3-XU-tlE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
