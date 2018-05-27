@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct News {
+struct News: Equatable {
   let title: String
 }
 
